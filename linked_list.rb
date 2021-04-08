@@ -11,34 +11,30 @@ class LinkedList
   end
 
   def append(value)
-    new_tail = Node.new
-    new_tail.value = value
-    @tail.next_node = new_tail
-    @tail = new_tail
+    if @tail.value != nil
+      new_tail = Node.new
+      new_tail.value = value
+      @tail.next_node = new_tail
+      @tail = new_tail
 
-    @size += 1
+      @size += 1
+    else
+      @tail.value = value
+    end
   end
 
   def prepend(value)
-    new_head = Node.new
-    new_head.value = value
-    new_head.next_node = @head
-    @head = new_head
+    if @head.value != nil
+      new_head = Node.new
+      new_head.value = value
+      new_head.next_node = @head
+      @head = new_head
 
-    @size += 1
+      @size += 1
+    else
+      @head.value = value
+    end
   end
-
-  #def size
-  #  curr = @head
-  #  i = 1
-
-  #  until curr.next_node == nil do
-  #    curr = curr.next_node
-  #    i += 1
-  #  end
-
-  #  i
-  #end
 
   def head
     @head
@@ -115,16 +111,22 @@ class LinkedList
   def to_s
     curr = @head
 
-    until curr == @tail do
+    until curr == @tail.next_node do
       print "(#{curr.value}) -> "
 
       curr = curr.next_node
     end
+
+    puts ''
   end
 end
-
-linked_list = LinkedList.new
-linked_list.prepend(3)
-linked_list.append(2)
-
-linked_list.to_s
+#
+#linked_list = LinkedList.new
+#linked_list.prepend(3)
+#linked_list.append(2)
+#linked_list.append(5)
+#linked_list.prepend(7)
+#linked_list.to_s
+#
+#puts "head: #{linked_list.head.value}"
+#puts "tail: #{linked_list.tail.value}"
