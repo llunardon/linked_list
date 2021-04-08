@@ -58,13 +58,13 @@ class LinkedList
       i += 1
     end
 
-    curr
+    curr.value
   end
 
   def pop
     curr = @head
 
-    until curr.next_node == tail do
+    until curr == @tail.next_node do
       curr = curr.next_node
     end 
 
@@ -80,7 +80,7 @@ class LinkedList
     curr = @head
     found = false
 
-    until curr.next_node == nil do
+    until curr == @tail.next_node do
       if curr.value == value
         found = true
       end
@@ -96,12 +96,13 @@ class LinkedList
     i = 0
     ret_value = nil
 
-    until curr.next_node == nil do
+    until curr == @tail.next_node do
       if (curr.value == value)
         ret_value = i
         return ret_value
       end
-
+      
+      curr = curr.next_node
       i += 1
     end
 
@@ -120,13 +121,3 @@ class LinkedList
     puts ''
   end
 end
-#
-#linked_list = LinkedList.new
-#linked_list.prepend(3)
-#linked_list.append(2)
-#linked_list.append(5)
-#linked_list.prepend(7)
-#linked_list.to_s
-#
-#puts "head: #{linked_list.head.value}"
-#puts "tail: #{linked_list.tail.value}"
